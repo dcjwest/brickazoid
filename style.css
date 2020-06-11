@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+    font-family: 'Orbitron', sans-serif;
+    width: 100%;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.game-screen {
+    border: 20px solid;
+    border-image: url(assets/images/screen_border.svg);
+    border-image-slice: 12 16;
+    position: relative;
+    top: 3vmin;
+    width: 100%;
+    max-width: 480px;
+    height: 90vh;
+}
+
+.game-screen canvas {
+    background: #004e92;
+    background: linear-gradient(180deg, #004e92 0%, #052C3D 33%, #021821 66%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.game-stats {
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9em;
+    justify-content: space-between;
+    position: absolute;
+    top: -3em;
+    width: 100%;
+}
+
+.stat .label {
+    color: #D10609;
+    text-transform: uppercase;
+}
