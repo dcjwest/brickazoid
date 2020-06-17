@@ -12,6 +12,12 @@ export let batYCoord = canvasHeight - 2*BAT_HEIGHT;
 let rightPressed = false;
 let leftPressed = false;
 
+// Reset bat's position after ball falls out of bounds.
+export function setBatStartPosition() {
+    batXCoord = (canvasWidth / 2) - 0.5*BAT_WIDTH;
+    batYCoord = canvasHeight - 2*BAT_HEIGHT;
+}
+
 export function updateBat() {
     batYCoord = canvasHeight - 2*BAT_HEIGHT;
     if (leftPressed && batXCoord > 0) batXCoord -= 7;
@@ -29,7 +35,15 @@ window.addEventListener("keydown", e => {
     if (e.code == "ArrowLeft") leftPressed = true;
     if (e.code == "ArrowRight") rightPressed = true;
 });
+
 window.addEventListener("keyup", e => {
     if (e.code == "ArrowLeft") leftPressed = false;
     if (e.code == "ArrowRight") rightPressed = false;
+});
+
+window.addEventListener("mousemove", e => {
+    let canvasBounding = document.querySelector('canvas').getBoundingClientRect();
+    let mouseXCoord = e.clientX - canvasBounding.left;
+
+    if (mouseXCoord >= 0 && mouseXCoord < canvasWidth) batXCoord = mouseXCoord - 0.5*BAT_WIDTH;
 });
