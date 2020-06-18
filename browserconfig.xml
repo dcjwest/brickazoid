@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<browserconfig>
+<configuration>
+  <system.webServer>
+    <staticContent>
+      <mimeMap fileExtension=".json" mimeType="application/json" />
+  </staticContent>
+</system.webServer>
+</configuration>
+<!-- <browserconfig>
     <msapplication>
         <tile>
             <square150x150logo src="/mstile-150x150.png"/>
             <TileColor>#2b5797</TileColor>
         </tile>
     </msapplication>
-</browserconfig>
+</browserconfig> -->
