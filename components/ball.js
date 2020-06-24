@@ -3,32 +3,38 @@ import { brickWall, brickRowCount, brickColumnCount, brickWidth, brickHeight, re
 import { batSize, batXCoord, batYCoord } from "./bat.js";
 import { updateScore } from "../game.js";
 
-const BALL_RADIUS = 8;
+const BALL_RADIUS = 0.012*canvasHeight;
 const BALL_SIZE = 2*BALL_RADIUS;
-const BALL_SPEED = 7;
+let ballSpeed = 7; // Default ball speed set on easy level.
 
 // Ball's initial position.
 let ballXCoord = (canvasWidth / 2) - BALL_RADIUS;
 let ballYCoord = batYCoord - BALL_SIZE;
 let firstLaunch = true; // Determines whether ball is starting from rest.
 
-let ball_dx = BALL_SPEED; // Rate of change in ball's X position.
-let ball_dy = -BALL_SPEED; // Rate of change in ball's Y position.
+let ball_dx = ballSpeed; // Rate of change in ball's X position.
+let ball_dy = -ballSpeed; // Rate of change in ball's Y position.
 
 // Reset ball's position after falling out of bounds.
 export function setBallStartPosition() {
     ballXCoord = (canvasWidth / 2) - BALL_RADIUS;
     ballYCoord = batYCoord - BALL_SIZE;
-    ball_dy = -BALL_SPEED;
+    ball_dy = -ballSpeed;
     firstLaunch = true;
-} 
+}
+
+export function setBallSpeed(speed = 7) {
+    ballSpeed = speed;
+    ball_dx = ballSpeed;
+    ball_dy = -ballSpeed;
+}
 
 export function updateBall() {
     detectBrickCollision();
     // Reverse ball's X direction if it collides with left/right wall.
     if (ballXCoord + ball_dx < 0 || ballXCoord + ball_dx > canvasWidth - BALL_SIZE) {
         if (!firstLaunch) {
-            ball_dx = ball_dx < 0? -BALL_SPEED : BALL_SPEED;
+            ball_dx = ball_dx < 0? -ballSpeed : ballSpeed;
         }
         ball_dx = -ball_dx;
     }
@@ -46,7 +52,7 @@ export function updateBall() {
     // Vary initial launch angle by randomising ball's X rate of change and direction.
     if (firstLaunch) {
         let plusOrMinus = Math.random() < 0.5? -1 : 1;
-        ball_dx = plusOrMinus * (Math.random() * 0.3*BALL_SPEED + 0.3*BALL_SPEED);
+        ball_dx = plusOrMinus * (Math.random() * 0.3*ballSpeed + 0.3*ballSpeed);
         firstLaunch = false;
     }
     
@@ -56,7 +62,7 @@ export function updateBall() {
 
 export function drawBall(ctx) {
     let ballImage = new Image();
-    ballImage.src = "./assets/images/balls/ball_silver.png";
+    ballImage.src = "./images/balls/ball_silver.png";
     ballImage.onload = () => ctx.drawImage(ballImage, ballXCoord, ballYCoord, BALL_SIZE, BALL_SIZE);
     ctx.drawImage(ballImage, ballXCoord, ballYCoord, BALL_SIZE, BALL_SIZE);
 }
@@ -74,7 +80,7 @@ function detectBrickCollision() {
                 if (ballXCoord >= currentBrick.x && ballXCoord <= currentBrick.x + brickWidth
                 && ballYCoord >= currentBrick.y - BALL_RADIUS && ballYCoord <= currentBrick.y + brickHeight + BALL_RADIUS) {
                     removeBrick(r, c);
-                    updateScore();
+                    updateScore(5);
                     ball_dy = -ball_dy;
                 }
             }
