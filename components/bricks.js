@@ -6,9 +6,9 @@ export let brickWidth = canvasWidth / (brickColumnCount + 0.5); // Half brickWid
 export let brickHeight = 0.5 * brickWidth;
 export let brickWall = [];
 
-let brickPadding = 0.5 * brickWidth / 10;
-let brickOffsetLeft = 0.5 * brickPadding;
-let brickOffsetTop = 2 * brickWidth;
+let brickPadding = 0.5 * brickWidth / 10; // Gap between each brick.
+let brickOffsetLeft = brickPadding; // Gap between bricks and canvas left wall.
+let brickOffsetTop = 2 * brickWidth; // Gap between bricks and  canvas top wall.
 
 const brickColors = [
     { path: "./images/bricks/brick_silver.png" },
@@ -19,6 +19,7 @@ const brickColors = [
     { path: "./images/bricks/brick_pink.png" }
 ];
 
+// Initialise array of bricks.
 export function initBricks() {
     for (let r = 0; r < brickRowCount; r++) {
         brickWall[r] = [];
@@ -31,6 +32,7 @@ export function initBricks() {
 
 initBricks();
 
+// Calculate number of unbroken bricks left.
 export function getBrickTotal() {
     let brickTotal = 0;
     for (let r = 0; r < brickRowCount; r++) {
@@ -52,7 +54,7 @@ export function drawBricks(ctx) {
                 brickImage.src = brickColors[r].path;
                 
                 if (brickWall[r][c].hasOwnProperty("durable")) {
-                    if (!brickWall[r][c].durable)  brickImage.src ="./images/bricks/brick_silver_cracked.png";
+                    if (!brickWall[r][c].durable) brickImage.src ="./images/bricks/brick_silver_cracked.png";
                 }
 
                 brickImage.onload = () => ctx.drawImage(brickImage, brickXCoord, brickYCoord, brickWidth, brickHeight);

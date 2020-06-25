@@ -1,6 +1,6 @@
 import { canvasWidth, canvasHeight} from "./canvasDimensions.js";
 import { brickWall, brickRowCount, brickColumnCount, brickWidth, brickHeight, removeBrick } from "./bricks.js";
-import { batSize, batXCoord, batYCoord } from "./bat.js";
+import { BAT_SIZE, batXCoord, batYCoord } from "./bat.js";
 import { updateScore } from "../game.js";
 
 const BALL_RADIUS = 0.012*canvasHeight;
@@ -44,8 +44,8 @@ export function updateBall() {
 
     /* Reverse ball's Y direction if it collides with the bat. First check if ball's X position falls within the bounds
         of the bat. Secondly, check if increasing ball's Y position collides it with the top edge of bat. */
-    if ((ballXCoord > batXCoord && ballXCoord < batXCoord + batSize.width)
-    && (ballYCoord + ball_dy > batYCoord - BALL_SIZE && ballYCoord + ball_dy < batYCoord + batSize.height)) {
+    if ((ballXCoord > batXCoord && ballXCoord < batXCoord + BAT_SIZE.width)
+    && (ballYCoord + ball_dy > batYCoord - BALL_SIZE && ballYCoord + ball_dy < batYCoord + BAT_SIZE.height)) {
         ball_dy = -ball_dy;
     }
 
@@ -62,7 +62,7 @@ export function updateBall() {
 
 export function drawBall(ctx) {
     let ballImage = new Image();
-    ballImage.src = "./images/balls/ball_silver.png";
+    ballImage.src = "./images/ball.png";
     ballImage.onload = () => ctx.drawImage(ballImage, ballXCoord, ballYCoord, BALL_SIZE, BALL_SIZE);
     ctx.drawImage(ballImage, ballXCoord, ballYCoord, BALL_SIZE, BALL_SIZE);
 }
@@ -79,8 +79,8 @@ function detectBrickCollision() {
             if (currentBrick.status === 1) {
                 if (ballXCoord >= currentBrick.x && ballXCoord <= currentBrick.x + brickWidth
                 && ballYCoord >= currentBrick.y - BALL_RADIUS && ballYCoord <= currentBrick.y + brickHeight + BALL_RADIUS) {
+                    if (!currentBrick.durable) updateScore(10);
                     removeBrick(r, c);
-                    updateScore(5);
                     ball_dy = -ball_dy;
                 }
             }

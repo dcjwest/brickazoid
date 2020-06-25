@@ -3,11 +3,14 @@ import { drawBall, setBallStartPosition, setBallSpeed, updateBall, ballOutOfBoun
 import { drawBat, setBatStartPosition, updateBat, handleMouseControl } from "./components/bat.js";
 import { initBricks, drawBricks, getBrickTotal } from "./components/bricks.js";
 
+// Game state variables
 let score = 0;
 let livesLeft = 3;
 let gamePaused = true;
 let gameOver = false;
 
+// Target DOM elements
+/* Main Menu Screen */
 const mainMenu = document.querySelector(".main-menu");
 const mainOptions = mainMenu.querySelector(".main-options");
 const startBtn = mainOptions.querySelector("#start-btn");
@@ -16,30 +19,36 @@ const levelReturnBtn = levelOptions.querySelector("#level-return-btn");
 const howToPlayBtn = mainOptions.querySelector("#howtoplay-btn");
 const overviewScreen = mainMenu.querySelector(".overview");
 const closeOverviewBtn = overviewScreen.querySelector(".close-modal");
+
+/* In-game Screen */
 const gameScreen = document.querySelector(".game-screen");
 const ctx = document.querySelector("canvas").getContext("2d");
 const livesDisplay = gameScreen.querySelector("#lives");
 const scoreDisplay = gameScreen.querySelector("#score");
 const startMsg = gameScreen.querySelector(".msg");
 
+/* Post-game Screen */
+const gameOverScreen = document.querySelector("#gameover-screen");
+const restartBtn = gameOverScreen.querySelector("#restart");
+const exitBtn = gameOverScreen.querySelector("#exit");
+
 // Main game loop function to trigger updating/drawing of game elements on canvas.
 function main() {
     if (gamePaused) return;
 
     if (gameOver) {
-        if (confirm("GAME OVER. Click okay to restart.")) reset();
-        else backToMainMenu();
+        gameOverScreen.classList = "lose";
+        gameOverScreen.querySelector("#result").textContent = "game over!";
         return;
     }
 
     if (getBrickTotal() === 0) {
-        if (confirm("YOU WON! Click okay to play again.")) reset();
-        else backToMainMenu();
+        gameOverScreen.classList = "win";
+        gameOverScreen.querySelector("#result").textContent = "you won!";
         return;
     }
 
     window.requestAnimationFrame(main);
-
     update();
     draw();
 }
@@ -83,6 +92,7 @@ function checkDeath() {
     }
 }
 
+// Initialise game after a state change, e.g. after losing a life.
 function init() {
     resizeCanvas();
     draw();
@@ -91,13 +101,13 @@ function init() {
 }
 
 function reset() {
+    gameOver = false;
+    livesLeft = 3;
+    score = 0;
     togglePause();
     initBricks();
     setBallStartPosition();
     setBatStartPosition();
-    gameOver = false;
-    livesLeft = 3;
-    score = 0;
     init();
 }
 
@@ -112,10 +122,13 @@ function backToMainMenu() {
     setTimeout(reset, 500);
 }
 
+// Hide/show level selector.
 function toggleLevelOptions() {
     mainOptions.classList.toggle("hide");
     levelOptions.classList.toggle("hide");
+
     let levelOptionBtns = [...levelOptions.children].filter(btn => btn.classList.contains("level-btn"));
+
     if (levelOptions.classList.contains("hide")) {
         levelOptionBtns.forEach(btn => btn.removeEventListener("click", setDifficultyLevel));
     }
@@ -124,6 +137,7 @@ function toggleLevelOptions() {
     }
 }
 
+// Select game difficulty by ultimately setting ball speed.
 function setDifficultyLevel(e) {
     const selectedLevel = e.target.dataset.level;
     let ballSpeed;
@@ -144,6 +158,7 @@ function setDifficultyLevel(e) {
     startGame();
 }
 
+// Hide/show how to play instructions.
 function toggleHowToPlay() {
     overviewScreen.classList.toggle("hide");
 }
@@ -177,4 +192,14 @@ window.addEventListener("keypress", spacebarToggle);
 window.addEventListener("resize", () => {
     resizeCanvas();
     draw();
+});
+
+restartBtn.addEventListener("click", () => {
+    gameOverScreen.classList = "hide";
+    reset();
+});
+
+exitBtn.addEventListener("click", () => {
+    gameOverScreen.classList = "hide";
+    backToMainMenu();
 });
