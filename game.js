@@ -182,7 +182,14 @@ function spacebarToggle(e) {
     if (e.code == "Space") togglePause();
 }
 
-window.onload = () => init();
+window.onload = () => {
+    init();
+    setTimeout(() => {
+        document.querySelector("#loader").classList.add("loaded");
+        document.querySelector("#app").classList.add("show");
+    }, 3000);
+
+} 
 startBtn.addEventListener("click", toggleLevelOptions);
 levelReturnBtn.addEventListener("click", toggleLevelOptions);
 howToPlayBtn.addEventListener("click", toggleHowToPlay);
