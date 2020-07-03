@@ -86,8 +86,6 @@ function checkDeath() {
         
         livesLeft--;
         togglePause();
-        setBallStartPosition();
-        setBatStartPosition();
         init();
     }
 }
@@ -95,6 +93,8 @@ function checkDeath() {
 // Initialise game after a state change, e.g. after losing a life.
 function init() {
     resizeCanvas();
+    setBallStartPosition();
+    setBatStartPosition();
     draw();
     updateScore();
     livesDisplay.textContent = livesLeft < 10? `0${livesLeft}`:livesLeft;
@@ -106,8 +106,6 @@ function reset() {
     score = 0;
     togglePause();
     initBricks();
-    setBallStartPosition();
-    setBatStartPosition();
     init();
 }
 
@@ -183,10 +181,15 @@ function spacebarToggle(e) {
 }
 
 window.onload = () => {
+    const app = document.querySelector("#app");
+    const loader = document.querySelector("#loader");
+    loader.firstElementChild.style.visibility = "visible"; // Loader bricks initially hidden to allow smoother entry into view.
+
     init();
+
     setTimeout(() => {
-        document.querySelector("#loader").classList.add("loaded");
-        document.querySelector("#app").classList.add("show");
+        loader.classList.add("loaded");
+        app.classList.add("show");
     }, 3000);
 
 } 
@@ -200,12 +203,10 @@ window.addEventListener("resize", () => {
     resizeCanvas();
     draw();
 });
-
 restartBtn.addEventListener("click", () => {
     gameOverScreen.classList = "hide";
     reset();
 });
-
 exitBtn.addEventListener("click", () => {
     gameOverScreen.classList = "hide";
     backToMainMenu();

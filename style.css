@@ -53,17 +53,17 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
-    width: 50vmin;
-    max-width: 180px;
+    visibility: hidden;
+    width: 80px;
     margin-bottom: 2em;
 }
 
 #loader img {
     animation: stack-brick 0.5s ease-in forwards;
     width: 100%;
-    max-width: 120px;
     opacity: 0;
     transition: 0.5s ease-in;
+    visibility: inherit;
 }
 
 #loader img:nth-child(1),
@@ -94,8 +94,9 @@ button:hover {
 #loader p {
     animation: flash-text 1.5s linear infinite;
     font-family: 'Press Start 2P', monospace;
-    font-size: 1.5em;
+    font-size: 1.2em;
     letter-spacing: 1px;
+    text-align: center;
     text-transform: uppercase;
 }
 
