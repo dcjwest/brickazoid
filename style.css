@@ -59,10 +59,9 @@ button:hover {
 }
 
 #loader img {
-    animation: stack-brick 0.5s ease-in forwards;
+    animation: stack-brick 0.5s cubic-bezier(.36,1.04,.68,1.1) forwards;
     width: 100%;
     opacity: 0;
-    transition: 0.5s ease-in;
     visibility: inherit;
 }
 
