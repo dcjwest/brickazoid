@@ -4,7 +4,8 @@
     padding: 0;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100vh;
     overflow-y: hidden;
@@ -47,7 +48,9 @@ button:hover {
     z-index: 3;
 }
 
-#loader.loaded { transform: translateY(-100%); }
+#loader.loaded {
+    transform: translateY(-100%);
+}
 
 #loader .wall {
     display: grid;
@@ -59,7 +62,7 @@ button:hover {
 }
 
 #loader img {
-    animation: stack-brick 0.5s cubic-bezier(.36,1.04,.68,1.1) forwards;
+    animation: stack-brick 0.5s cubic-bezier(0.36, 1.04, 0.68, 1.1) forwards;
     width: 100%;
     opacity: 0;
     visibility: inherit;
@@ -78,10 +81,18 @@ button:hover {
     transform: rotate(45deg) translate(100%, 100%);
 }
 
-#loader img:nth-child(4) { animation-delay: 0.5s; }
-#loader img:nth-child(3) { animation-delay: 1s; }
-#loader img:nth-child(2) { animation-delay: 1.5s; }
-#loader img:nth-child(1) { animation-delay: 2s; }
+#loader img:nth-child(4) {
+    animation-delay: 0.5s;
+}
+#loader img:nth-child(3) {
+    animation-delay: 1s;
+}
+#loader img:nth-child(2) {
+    animation-delay: 1.5s;
+}
+#loader img:nth-child(1) {
+    animation-delay: 2s;
+}
 
 @keyframes stack-brick {
     100% {
@@ -100,8 +111,13 @@ button:hover {
 }
 
 @keyframes flash-text {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 
 #app {
@@ -138,7 +154,9 @@ button:hover {
     top: 1em;
 }
 
-.main-menu .stat.container .label { margin-bottom: 0.2em; }
+.main-menu .stat.container .label {
+    margin-bottom: 0.2em;
+}
 
 .main-menu h1 {
     border-bottom: 0.3em groove #fff;
@@ -149,14 +167,16 @@ button:hover {
 .main-menu.container h1 span {
     font-size: 1.4em;
     letter-spacing: 3px;
-    text-shadow: 0px 0px 5px #fff,
-                 0px 0px 10px #fff,
-                 0px 0px 20px #fff !important; 
+    text-shadow: 0px 0px 5px #fff, 0px 0px 10px #fff, 0px 0px 20px #fff !important;
 }
 
-.main-menu img { max-width: 1.5em; }
+.main-menu img {
+    max-width: 1.5em;
+}
 
-.options.container { position: relative; }
+.options.container {
+    position: relative;
+}
 
 .options button {
     font-size: 1em;
@@ -167,15 +187,12 @@ button:hover {
 
 .options button:hover,
 .options button:active {
-    text-shadow: 0px 0px 3px #fff,
-                 0px 0px 5px #fff,
-                 0px 0px 10px #fff !important; 
+    text-shadow: 0px 0px 3px #fff, 0px 0px 5px #fff, 0px 0px 10px #fff !important;
 }
 
 .options button:hover::before,
-.options button:active::before
- {
-    content: "";
+.options button:active::before {
+    content: '';
     height: 0;
     width: 0;
     border-top: 0.5em solid transparent;
@@ -203,9 +220,13 @@ button:hover {
     transform: translateX(-100%);
 }
 
-.level-options.hide { transform: translateX(100%); }
+.level-options.hide {
+    transform: translateX(100%);
+}
 
-.level-options button { margin: 1em; }
+.level-options button {
+    margin: 1em;
+}
 
 #level-return-btn {
     font-size: 0.8em;
@@ -214,8 +235,14 @@ button:hover {
     transform: translateY(100%);
 }
 
+#level-return-btn .back-arrow {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-right: 0.2rem;
+}
+
 .overview {
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     position: fixed;
     width: 100%;
     height: 100%;
@@ -233,7 +260,9 @@ button:hover {
     margin-right: 0.5em;
     max-width: 2em;
 }
-.overview-header h2 { font-size: 1.6em; }
+.overview-header h2 {
+    font-size: 1.6em;
+}
 
 .overview .modal {
     background-color: #fff;
@@ -249,7 +278,7 @@ button:hover {
 
 .overview .modal p {
     color: #555;
-    font-family: "Josefin Sans", sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
     font-size: 1.2em;
     line-height: 1.2em;
     width: 100%;
@@ -267,7 +296,7 @@ button:hover {
 
 .overview .modal h3::after {
     background-color: #dc0508;
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     right: 0;
@@ -290,14 +319,18 @@ button:hover {
 .close-modal::before,
 .close-modal::after {
     background-color: #fff;
-    content: "";
+    content: '';
     position: absolute;
     width: 60%;
     height: 2px;
 }
 
-.close-modal::before { transform: rotate(45deg); }
-.close-modal::after { transform: rotate(-45deg); }
+.close-modal::before {
+    transform: rotate(45deg);
+}
+.close-modal::after {
+    transform: rotate(-45deg);
+}
 
 .close-modal:hover {
     background-color: #7d0305;
@@ -310,14 +343,16 @@ button:hover {
 }
 
 .author.container a {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.8em;
     letter-spacing: 1px;
     text-decoration: none;
     transition: 0.3s;
 }
 
-.author.container a:hover { color: rgba(255,255,255,1); }
+.author.container a:hover {
+    color: rgba(255, 255, 255, 1);
+}
 
 .game-screen {
     position: relative;
@@ -354,7 +389,7 @@ button:hover {
 
 .game-screen canvas {
     background: #004e92;
-    background: linear-gradient(180deg, #004e92 0%, #052C3D 33%, #021821 66%);
+    background: linear-gradient(180deg, #004e92 0%, #052c3d 33%, #021821 66%);
     position: absolute;
     width: 92%;
     height: 95%;
@@ -374,7 +409,7 @@ button:hover {
 }
 
 .stat .label {
-    color: #D10609;
+    color: #d10609;
     text-transform: uppercase;
 }
 
@@ -390,11 +425,13 @@ button:hover {
     z-index: 1;
 }
 
-#gameover-screen.hide { transform: scale(0); }
+#gameover-screen.hide {
+    transform: scale(0);
+}
 
 #gameover-screen::before {
     filter: blur(10px);
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -410,7 +447,15 @@ button:hover {
 #gameover-screen.win,
 #gameover-screen.win::before {
     background-color: #23f920;
-    background: linear-gradient(to bottom right, #dc0508, #f85f03, #f7da00, #23f920, #1d91ff, #ff54ac);
+    background: linear-gradient(
+        to bottom right,
+        #dc0508,
+        #f85f03,
+        #f7da00,
+        #23f920,
+        #1d91ff,
+        #ff54ac
+    );
     background-size: 400% 400%;
 }
 
@@ -422,8 +467,13 @@ button:hover {
 }
 
 @keyframes animate-border {
-    0%, 100% { background-position: 0%; }
-    50% { background-position: 100%; }
+    0%,
+    100% {
+        background-position: 0%;
+    }
+    50% {
+        background-position: 100%;
+    }
 }
 
 .gameover-bg {
@@ -448,12 +498,21 @@ button:hover {
     text-transform: uppercase;
 }
 
-#gameover-screen.lose #result {color: #dc0508; }
-#gameover-screen.win #result {color: #23f920; }
+#gameover-screen.lose #result {
+    color: #dc0508;
+}
+#gameover-screen.win #result {
+    color: #23f920;
+}
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 #gameover-screen .options button {
@@ -464,12 +523,18 @@ button:hover {
 }
 
 @media screen and (min-width: 375px) {
-    #gameover-screen { font-size: 14px; }
+    #gameover-screen {
+        font-size: 14px;
+    }
 }
 
 @media screen and (min-width: 576px) {
-    .main-menu h1 { font-size: 40px; }
-    .overview-header h2 { font-size: 2em; }
+    .main-menu h1 {
+        font-size: 40px;
+    }
+    .overview-header h2 {
+        font-size: 2em;
+    }
     #gameover-screen #result {
         font-size: 3.2em;
         letter-spacing: 2px;
@@ -477,7 +542,9 @@ button:hover {
 }
 
 @media screen and (min-width: 768px) {
-    .main-menu h1 { font-size: 52px; }
+    .main-menu h1 {
+        font-size: 52px;
+    }
 
     .overview .modal {
         border-radius: 0.5em;
@@ -486,10 +553,16 @@ button:hover {
         max-height: 90vmin;
     }
 
-    .overview .modal h3 { font-size: 1.3em; }
+    .overview .modal h3 {
+        font-size: 1.3em;
+    }
 
-    #gameover-screen { font-size: 18px; }
-    #gameover-screen #result { font-size: 4.5em; }
+    #gameover-screen {
+        font-size: 18px;
+    }
+    #gameover-screen #result {
+        font-size: 4.5em;
+    }
 }
 
 @media screen and (orientation: landscape) and (max-height: 575px) {

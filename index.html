@@ -1,87 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="./brickazoid-favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Press+Start+2P&family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css" />
-    <title>Brickazoid</title>
-</head>
-<body>
-    <div id="loader" class="container">
-        <div class="wall">
-            <img src="./images/bricks/brick_red.png" />
-            <img src="./images/bricks/brick_orange.png" />
-            <img src="./images/bricks/brick_green.png" />
-            <img src="./images/bricks/brick_blue.png" />
-            <img src="./images/bricks/brick_pink.png" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="./brickazoid-favicon.ico" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron&family=Press+Start+2P&family=Josefin+Sans:wght@300&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./style.css" />
+        <title>Brickazoid</title>
+    </head>
+    <body>
+        <div id="loader" class="container">
+            <div class="wall">
+                <img src="./images/bricks/brick_red.png" />
+                <img src="./images/bricks/brick_orange.png" />
+                <img src="./images/bricks/brick_green.png" />
+                <img src="./images/bricks/brick_blue.png" />
+                <img src="./images/bricks/brick_pink.png" />
+            </div>
+            <p>loading</p>
         </div>
-        <p>loading</p>
-    </div>
-    <div id="app" class="container">
-        <div class="main-menu container">
-            <div class="stat container">
-                <span class="label">high score</span>
-                <span class="value">50000</span>
-            </div>
-            <h1 class="container">
-                <span>Brick</span><img src="./images/brick_A_shape.png" /><span>zoid</span>
-            </h1>
-            <div class="options container">
-                <div class="main-options container">
-                    <button id="start-btn">start game</button>
-                    <button id="howtoplay-btn">how to play</button>
-                </div>
-                <div class="level-options hide container">
-                    <button class="level-btn" data-level="easy">easy</button>
-                    <button class="level-btn" data-level="hard">hard</button>
-                    <button class="level-btn" data-level="ninja">ninja</button>
-                    <button id="level-return-btn">&#8617;back</button>
-                </div>
-            </div>
-            <div class="author container">
-                <a href="https://davidcjwest.tk/" rel="noopener noreferrer" target="_blank">&copy; 2020 David van der Westhuizen</a>
-            </div>
-            <div class="overview hide container">
-                <div class="modal container">
-                    <button class="close-modal container"></button>
-                    <div class="overview-header container">
-                        <img src="./images/logo.png" /><h2>how to play</h2>
-                    </div>
-                    <div><h3>objective</h3><p>Use the bat to bounce a ball and chip away at rows of bricks.</p></div>
-                    <div><h3>controls</h3><p>Move the bat with the LEFT/RIGHT arrow keys or use the mouse. Hit SPACEBAR or click the game screen to play.</p></div>
-                    <div><h3>to win</h3><p>Destroy all bricks in the level.</p></div>
-                    <p>If you drop the ball, you'll lose a life. Drop the ball with zero lives left and the game is over!</p>
-                </div>
-            </div>
-        </div>
-        <div class="game-screen container">
-            <p class="msg">Hit SPACEBAR or click game screen to play!</p>
-            <div class="game-stats container">
+        <div id="app" class="container">
+            <div class="main-menu container">
                 <div class="stat container">
-                    <span class="label">lives:</span>
-                    <span class="value" id="lives">00</span>
+                    <span class="label">high score</span>
+                    <span class="value">50000</span>
                 </div>
-                <div class="stat container">
-                    <span class="label">score:</span>
-                    <span class="value" id="score">00000</span>
-                </div>
-            </div>
-            <img class="screen-border" src="./images/screen_border.png" />
-            <canvas></canvas>
-        </div>
-        <div id="gameover-screen" class="hide">
-            <div class="gameover-bg container">
-                <h2 id="result"></h2>
+                <h1 class="container">
+                    <span>Brick</span
+                    ><img src="./images/brick_A_shape.png" /><span>zoid</span>
+                </h1>
                 <div class="options container">
-                    <button id="restart">restart</button>
-                    <button id="exit">exit</button>
+                    <div class="main-options container">
+                        <button id="start-btn">start game</button>
+                        <button id="howtoplay-btn">how to play</button>
+                    </div>
+                    <div class="level-options hide container">
+                        <button class="level-btn" data-level="easy">
+                            easy
+                        </button>
+                        <button class="level-btn" data-level="hard">
+                            hard
+                        </button>
+                        <button class="level-btn" data-level="ninja">
+                            ninja
+                        </button>
+                        <button id="level-return-btn">
+                            <span class="back-arrow">&larr;</span>back
+                        </button>
+                    </div>
+                </div>
+                <div class="author container">
+                    <a
+                        href="https://davidcjwest.tk/"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        >&copy; 2020 David van der Westhuizen</a
+                    >
+                </div>
+                <div class="overview hide container">
+                    <div class="modal container">
+                        <button class="close-modal container"></button>
+                        <div class="overview-header container">
+                            <img src="./images/logo.png" />
+                            <h2>how to play</h2>
+                        </div>
+                        <div>
+                            <h3>objective</h3>
+                            <p>
+                                Use the bat to bounce a ball and chip away at
+                                rows of bricks.
+                            </p>
+                        </div>
+                        <div>
+                            <h3>controls</h3>
+                            <p>
+                                Move the bat with the LEFT/RIGHT arrow keys or
+                                use the mouse. Hit SPACEBAR or click the game
+                                screen to play.
+                            </p>
+                        </div>
+                        <div>
+                            <h3>to win</h3>
+                            <p>Destroy all bricks in the level.</p>
+                        </div>
+                        <p>
+                            If you drop the ball, you'll lose a life. Drop the
+                            ball with zero lives left and the game is over!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="game-screen container">
+                <p class="msg">Hit SPACEBAR or click game screen to play!</p>
+                <div class="game-stats container">
+                    <div class="stat container">
+                        <span class="label">lives:</span>
+                        <span class="value" id="lives">00</span>
+                    </div>
+                    <div class="stat container">
+                        <span class="label">score:</span>
+                        <span class="value" id="score">00000</span>
+                    </div>
+                </div>
+                <img class="screen-border" src="./images/screen_border.png" />
+                <canvas></canvas>
+            </div>
+            <div id="gameover-screen" class="hide">
+                <div class="gameover-bg container">
+                    <h2 id="result"></h2>
+                    <div class="options container">
+                        <button id="restart">restart</button>
+                        <button id="exit">exit</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- <a href='https://www.freepik.com/free-photos-vectors/line'>Line vector created by vectorpocket - www.freepik.com</a> -->
-    <script src="./game.js" type="module"></script>
-</body>
+        <!-- <a href='https://www.freepik.com/free-photos-vectors/line'>Line vector created by vectorpocket - www.freepik.com</a> -->
+        <script src="./game.js" type="module"></script>
+    </body>
 </html>
