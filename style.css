@@ -388,12 +388,15 @@ button:hover {
 }
 
 .game-screen canvas {
-    background: #004e92;
-    background: linear-gradient(180deg, #004e92 0%, #052c3d 33%, #021821 66%);
     position: absolute;
     width: 92%;
     height: 95%;
     z-index: -1;
+}
+
+.game-screen #static-canvas {
+    background: #004e92;
+    background: linear-gradient(180deg, #004e92 0%, #052c3d 33%, #021821 66%);
 }
 
 .game-stats {
