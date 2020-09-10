@@ -43,7 +43,6 @@ export function getBrickTotal() {
 }
 
 export function drawBricks() {
-    console.log('Drawing bricks!');
     staticCtx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     for (let r = 0; r < brickRowCount; r++) {
