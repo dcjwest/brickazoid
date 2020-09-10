@@ -15,6 +15,7 @@ import {
     setBatStartPosition,
     updateBat,
     handleMouseControl,
+    handleTouchControl,
 } from './components/bat.js';
 import { initBricks, drawBricks, getBrickTotal } from './components/bricks.js';
 
@@ -37,7 +38,8 @@ const closeOverviewBtn = overviewScreen.querySelector('.close-modal');
 
 /* In-game Screen */
 const gameScreen = document.querySelector('.game-screen');
-const dynamicCtx = document.querySelector('#dynamic-canvas').getContext('2d');
+const dynamicCanvas = document.querySelector('#dynamic-canvas');
+const dynamicCtx = dynamicCanvas.getContext('2d');
 const livesDisplay = gameScreen.querySelector('#lives');
 const scoreDisplay = gameScreen.querySelector('#score');
 const startMsg = gameScreen.querySelector('.msg');
@@ -190,11 +192,13 @@ function togglePause() {
         gamePaused = false;
         window.requestAnimationFrame(main);
         window.addEventListener('mousemove', handleMouseControl);
+        dynamicCanvas.addEventListener('touchmove', handleTouchControl);
     } else {
         startMsg.style.opacity = 1;
         gamePaused = true;
         window.cancelAnimationFrame(main);
         window.removeEventListener('mousemove', handleMouseControl);
+        dynamicCanvas.removeEventListener('touchmove', handleTouchControl);
     }
 }
 

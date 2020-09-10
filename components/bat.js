@@ -14,10 +14,6 @@ export let batYCoord = canvasHeight - 2 * BAT_HEIGHT;
 let rightPressed = false;
 let leftPressed = false;
 
-// Variables to track touch control
-let touch = null;
-let touchXCoord = 0;
-
 // Reset bat's position after ball falls out of bounds.
 export function setBatStartPosition() {
     batXCoord = canvasWidth / 2 - 0.5 * BAT_WIDTH;
@@ -41,19 +37,15 @@ export function drawBat(ctx) {
 // Handle bat's movement when controlled with mouse.
 export function handleMouseControl(e) {
     let mouseXCoord = e.clientX - canvasBounding.left;
-
     // Confine mouse movement of bat within canvas walls.
     if (mouseXCoord >= 0 && mouseXCoord < canvasWidth)
         batXCoord = mouseXCoord - 0.5 * BAT_WIDTH;
 }
 
-function detectTouch(e) {
-    touch = e.changedTouches[0];
-    touchXCoord = touch.clientX - canvasBounding.left;
-}
-
-function handleTouchControl(e) {
-    detectTouch(e);
+// Handle bat's movement for touch-compatible devices.
+export function handleTouchControl(e) {
+    let touch = e.changedTouches[0];
+    let touchXCoord = touch.clientX - canvasBounding.left;
     // Confine touch movement of bat within canvas walls.
     if (touchXCoord >= 0 && touchXCoord < canvasWidth)
         batXCoord = touchXCoord - 0.5 * BAT_WIDTH;
@@ -68,6 +60,3 @@ window.addEventListener('keyup', e => {
     if (e.code == 'ArrowLeft') leftPressed = false;
     if (e.code == 'ArrowRight') rightPressed = false;
 });
-
-dynamicCanvas.addEventListener('touchstart', detectTouch);
-dynamicCanvas.addEventListener('touchmove', handleTouchControl);
