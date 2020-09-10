@@ -48,11 +48,12 @@ export function handleMouseControl(e) {
 }
 
 function detectTouch(e) {
-    touch = e.touches[0];
+    touch = e.changedTouches[0];
     touchXCoord = touch.clientX - canvasBounding.left;
 }
 
 function handleTouchControl(e) {
+    detectTouch(e);
     // Confine touch movement of bat within canvas walls.
     if (touchXCoord >= 0 && touchXCoord < canvasWidth)
         batXCoord = touchXCoord - 0.5 * BAT_WIDTH;
