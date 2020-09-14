@@ -85,10 +85,12 @@ export function drawBricks() {
 }
 
 export function removeBrick(rowIndex, columnIndex) {
-    if (brickWall[rowIndex][columnIndex].durable) {
-        brickWall[rowIndex][columnIndex].durable = false;
+    let targetBrick = brickWall[rowIndex][columnIndex];
+
+    if (targetBrick.durable) {
+        targetBrick.durable = false;
     } else {
-        brickWall[rowIndex][columnIndex].status = 0;
+        targetBrick.status = 0;
     }
 
     drawBricks();

@@ -29,7 +29,8 @@ let gameOver = false;
 
 /* In-game Screen */
 const gameScreen = document.querySelector('.game-screen');
-const dynamicCanvas = document.querySelector('#dynamic-canvas');
+const pauseScreen = gameScreen.querySelector('#pause-screen');
+const dynamicCanvas = gameScreen.querySelector('#dynamic-canvas');
 const dynamicCtx = dynamicCanvas.getContext('2d');
 const livesDisplay = gameScreen.querySelector('#lives');
 const scoreDisplay = gameScreen.querySelector('#score');
@@ -108,6 +109,7 @@ function init() {
     draw();
     drawBricks();
     updateScore();
+    pauseScreen.style.opacity = 0;
     livesDisplay.textContent = livesLeft < 10 ? `0${livesLeft}` : livesLeft;
 }
 
@@ -129,12 +131,14 @@ function backToMainMenu() {
 function togglePause() {
     if (gamePaused) {
         startMsg.style.opacity = 0;
+        pauseScreen.style.opacity = 0;
         gamePaused = false;
         window.requestAnimationFrame(main);
         window.addEventListener('mousemove', handleMouseControl);
         dynamicCanvas.addEventListener('touchmove', handleTouchControl);
     } else {
         startMsg.style.opacity = 1;
+        pauseScreen.style.opacity = 1;
         gamePaused = true;
         window.cancelAnimationFrame(main);
         window.removeEventListener('mousemove', handleMouseControl);

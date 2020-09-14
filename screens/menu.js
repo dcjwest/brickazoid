@@ -40,13 +40,13 @@ function setDifficultyLevel(e) {
 
     switch (selectedLevel) {
         case 'ninja':
-            ballSpeed = 15;
-            break;
-        case 'hard':
             ballSpeed = 12;
             break;
+        case 'hard':
+            ballSpeed = 9;
+            break;
         default:
-            ballSpeed = 7;
+            ballSpeed = 5;
             break;
     }
     setBallSpeed(ballSpeed);
