@@ -498,8 +498,9 @@ button:hover {
 
 #gameover-screen #result {
     animation: pulse 1s linear 0s infinite;
-    font-size: 2.8em;
+    font-size: 2.6em;
     letter-spacing: 1px;
+    text-align: center;
     text-transform: uppercase;
 }
 
