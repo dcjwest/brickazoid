@@ -92,6 +92,7 @@ function checkDeath() {
     if (ballOutOfBounds()) {
         if (livesLeft === 0) {
             gameOver = true;
+            gameScreen.removeEventListener('click', togglePause);
             return;
         }
 
@@ -120,6 +121,7 @@ function reset() {
     togglePause();
     initBricks();
     init();
+    gameScreen.addEventListener('click', togglePause);
 }
 
 function backToMainMenu() {

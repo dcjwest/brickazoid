@@ -12,7 +12,7 @@ import { updateScore } from '../game.js';
 
 const BALL_RADIUS = 0.012 * canvasHeight;
 const BALL_SIZE = 2 * BALL_RADIUS;
-let ballSpeed = 5; // Default ball speed set on easy level.
+export let ballSpeed = 5; // Default ball speed set on easy level.
 
 // Ball's initial position.
 let ballXCoord = canvasWidth / 2 - BALL_RADIUS;

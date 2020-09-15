@@ -1,4 +1,5 @@
 import { canvasWidth, canvasHeight } from './canvasDimensions.js';
+import { ballSpeed } from './ball.js';
 const dynamicCanvas = document.querySelector('#dynamic-canvas');
 const canvasBounding = dynamicCanvas.getBoundingClientRect();
 
@@ -22,8 +23,10 @@ export function setBatStartPosition() {
 
 // Handle bat's movement when controlled with keyboard arrows.
 export function updateBat() {
-    if (leftPressed && batXCoord > 0) batXCoord -= 10;
-    if (rightPressed && batXCoord < canvasWidth - BAT_WIDTH) batXCoord += 10;
+    let batSpeed = ballSpeed >= 9 ? 9 : 5;
+    if (leftPressed && batXCoord > 0) batXCoord -= batSpeed;
+    if (rightPressed && batXCoord < canvasWidth - BAT_WIDTH)
+        batXCoord += batSpeed;
 }
 
 export function drawBat(ctx) {
